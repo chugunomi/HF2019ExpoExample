@@ -28,7 +28,15 @@
     },
     "packagerOpts": {
       "config": "metro.config.js",
-      "sourceExts": ["js", "jsx", "svg", "ts", "tsx"]
-    }
+      "sourceExts": [
+        "js",
+        "jsx",
+        "svg",
+        "ts",
+        "tsx"
+      ]
+    },
+    "description": "",
+    "githubUrl": "https://github.com/MikeChugunov/HF2019ExpoExample"
   }
 }

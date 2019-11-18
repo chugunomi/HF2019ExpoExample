@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, ActivityIndicator, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, ActivityIndicator, TextInput, Button, Platform } from 'react-native';
 import Constants from 'expo-constants';
 
 const PRIMARY_COLOR = 'rgb(0, 79, 157)';
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: '#fff',
-    fontFamily: 'monospace',
+    fontFamily: Platform.OS === 'ios' ? 'Courier' : 'monospace',
     fontSize: 18,
     fontWeight: 'bold',
   },
