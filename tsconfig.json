@@ -1,9 +1,14 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
     "jsx": "react-native",
     "lib": ["dom", "esnext"],
     "moduleResolution": "node",
+    "paths": {
+      "*": ["./node_modules/*"],
+      "@/*": ["./src/*"]
+    },
     "noEmit": true,
     "skipLibCheck": true,
     "resolveJsonModule": true
