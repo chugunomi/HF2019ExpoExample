@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity, CameraRoll } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import { Camera } from 'expo-camera';
 import { NavigationScreenProp } from 'react-navigation';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import styles from './styles';
 
 interface Props {
@@ -17,7 +17,7 @@ interface State {
   flashMode: any;
 }
 
-export default class CameraScreen extends React.Component<Props, State> {
+export default class CameraScreen extends React.PureComponent<Props, State> {
   private camera: Camera = null;
 
   state = {
@@ -94,7 +94,7 @@ export default class CameraScreen extends React.Component<Props, State> {
                 <TouchableOpacity
                   style={styles.controlButton}
                   onPress={this.switchCamera}>
-                  <Ionicons name="ios-reverse-camera" size={32} color={'white'} />
+                  <MaterialCommunityIcons name="camera-front" size={32} color={'white'} />
                 </TouchableOpacity>
                 <TouchableOpacity
                   style={styles.controlButton}

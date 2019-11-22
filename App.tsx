@@ -12,6 +12,12 @@ const AppNavigator = createStackNavigator(
     },
     [ScreenNames.Camera]: {
       screen: Screens.Camera,
+    },
+    [ScreenNames.Device]: {
+      screen: Screens.Device,
+    },
+    [ScreenNames.Map]: {
+      screen: Screens.Map,
     }
   },
   {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, PanResponder, PanResponderInstance, View, ViewStyle, ViewProps } from 'react-native';
+import { StyleSheet, PanResponder, PanResponderInstance, View, ViewProps } from 'react-native';
 
 import { Animated } from 'react-native';
 
@@ -10,11 +10,11 @@ interface Props extends ViewProps {
 }
 
 interface State {
-  scale: number;
+  marginTop: number;
   radius: number;
 }
 
-export default class DraggableCard extends React.Component<Props, State> {
+export default class DraggableCard extends React.PureComponent<Props, State> {
   static defaultProps = {
     limit: 40,
   };
@@ -22,24 +22,24 @@ export default class DraggableCard extends React.Component<Props, State> {
   private pos = { x:0, y:0 };
   private panResponder: PanResponderInstance = null;
   private pan = new Animated.ValueXY({ x: 0, y: 0 });
-  private scale = new Animated.Value(0);
+  private marginTop = new Animated.Value(-120);
   private radius = new Animated.Value(640);
 
   constructor(props: Props) {
     super(props);
 
     this.state = {
-      scale: 0,
+      marginTop: -120,
       radius: 640,
-    }
+    };
 
     this.pan.addListener(({x, y}) => {
-      this.pos.x = x < props.limit ? x : this.pos.x; 
-      this.pos.y = y < props.limit ? y : this.pos.y; 
+      this.pos.x = x < props.limit ? x : this.pos.x;
+      this.pos.y = y < props.limit ? y : this.pos.y;
     });
 
     this.panResponder = PanResponder.create({
-      onStartShouldSetPanResponder: (e, gesture) => true,
+      onStartShouldSetPanResponder: () => true,
       onPanResponderMove: (e, gesture) => {
         const x = gesture.moveX - gesture.x0;
         const y = gesture.moveY - gesture.y0;
@@ -49,14 +49,14 @@ export default class DraggableCard extends React.Component<Props, State> {
           useNativeDriver: true
         }).start();
       },
-      onPanResponderRelease: (e, gesture) => {
+      onPanResponderRelease: () => {
         Animated.spring(this.pan, {
           toValue: { x: 0, y: 0 },
           friction: 5,
           useNativeDriver: true
         }).start();
-        Animated.timing(this.scale, {
-          toValue: 1,
+        Animated.timing(this.marginTop, {
+          toValue: 0,
           duration: 600,
           useNativeDriver: true
         }).start();
@@ -65,10 +65,10 @@ export default class DraggableCard extends React.Component<Props, State> {
   }
 
   componentDidMount()  {
-    this.scale.addListener(({value}) => this.setState({scale: value}));
+    this.marginTop.addListener(({value}) => this.setState({marginTop: value}));
     this.radius.addListener(({value}) => this.setState({radius: value}));
-    Animated.timing(this.scale, {
-      toValue: 1,
+    Animated.timing(this.marginTop, {
+      toValue: 0,
       duration: 600,
       useNativeDriver: true
     }).start();
@@ -82,10 +82,9 @@ export default class DraggableCard extends React.Component<Props, State> {
   render() {
     const panStyle = {
       transform: this.pan.getTranslateTransform(),
-      scaleX: this.state.scale,
-      scaleY: this.state.scale,
+      marginTop: this.state.marginTop,
       borderRadius: this.state.radius,
-    }
+    };
 
     return (
         <Animated.View {...this.panResponder.panHandlers} style={[styles.card, panStyle]}>

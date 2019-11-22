@@ -19,7 +19,12 @@ const features: Feature[] = [
     {
         name: 'Датчики',
         icon: '📱',
-        screen: 'Camera',
+        screen: 'Device',
+    },
+    {
+        name: 'Карта',
+        icon: '🗺',
+        screen: 'Map',
     },
 ]
 

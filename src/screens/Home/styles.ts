@@ -28,6 +28,9 @@ export default StyleSheet.create({
       elevation: 4,
     },
     inputWrap: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
       backgroundColor: '#fff',
       padding: 24,
       paddingBottom: 36,
@@ -39,6 +42,7 @@ export default StyleSheet.create({
       borderRadius: 3,
       paddingHorizontal: 24,
       marginBottom: 12,
+      alignSelf: 'stretch',
     },
     featureItem: {
       flex: 1,

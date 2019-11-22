@@ -5,7 +5,7 @@ import Constants from 'expo-constants';
 import colors from "@/constants/colors";
 import SimbirsoftLogo from '@/assets/simbirsoft_logo.svg';
 import { NavigationStackProp } from 'react-navigation-stack';
-import { Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export const HEADER_HEIGHT = 92;
 
@@ -15,7 +15,7 @@ export default function(props: { navigation: NavigationStackProp }) {
         <View style={styles.header}>
           {isCanGoBack ? (
             <TouchableOpacity onPress={() => props.navigation.pop()}>
-              <Ionicons name="ios-arrow-back" size={32} color={colors.primary} />
+              <MaterialCommunityIcons name="chevron-left" size={32} color={colors.primary} />
             </TouchableOpacity>
           ) : <Text style={styles.headerText}>Hot Frontend 2019</Text>}
           <SimbirsoftLogo height={40} width={40} />
